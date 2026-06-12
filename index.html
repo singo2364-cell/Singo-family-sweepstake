@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Cup 2026 Sweepstake v202606120708</title>
+<title>World Cup 2026 Sweepstake v202606121018</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
 <style>
 :root{
@@ -225,7 +225,7 @@ function calcTable(){
     }
     addStats(hp,r.homeStats);addStats(ap,r.awayStats);
   });
-  return Object.values(pts).map(p=>({...p,total:parseFloat(p.pts.toFixed(1))})).sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name));
+  return Object.values(pts).map(p=>({...p,total:parseFloat(p.pts.toFixed(2))})).sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name));
 }
 
 function renderTable(){
@@ -263,7 +263,7 @@ function buildChart(tbl){
     function apS(owner,st){if(!st||!owner)return;runPts[owner]+=(st.goals||0)*p.goal+(st.yellows||0)*p.yellow+(st.reds||0)*p.red+(st.shotsOnTarget||0)*p.shotOnTarget+(st.offsides||0)*p.offside+(st.pensConceded||0)*p.penaltyConceded+(st.pensMissed||0)*p.penaltyMissed+(st.pensSaved||0)*p.penaltySave+(st.pensShootout||0)*p.penaltyShootout+(st.corners||0)*p.corner;if(st.firstScorer)runPts[owner]+=p.firstScorer;}
     apS(ho,r.homeStats);apS(ao,r.awayStats);
     const owners=ho===ao?[ho]:[ho,ao];
-    owners.forEach(owner=>{if(!owner||!history[owner])return;const inc=ho===ao?2:1;pgc[owner]+=inc;history[owner].push({game:pgc[owner],pts:parseFloat((runPts[owner]||0).toFixed(1))});});
+    owners.forEach(owner=>{if(!owner||!history[owner])return;const inc=ho===ao?2:1;pgc[owner]+=inc;history[owner].push({game:pgc[owner],pts:parseFloat((runPts[owner]||0).toFixed(2))});});
   });
   const numG=Math.max(1,...Object.values(pgc));
   const allV=Object.values(history).flatMap(a=>a.map(d=>d.pts));
